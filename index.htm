@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Asuntojen.hintatiedot.fi Scraper</title>
+    <link href='style.css' rel='stylesheet' />
+    <link href='nprogress.css' rel='stylesheet' />
+  </head>
+  <body>
+    <h1>Asuntojen.hintatiedot.fi Scraper</h1>
+    <form>
+      <input type="button" id="btn-results" value="Get results" />
+    </form>
+    <table id="container" border="1">
+      <tr>
+        <th>Asuinalue</th>
+        <th>Pohja</th>
+        <th>Tyyppi</th>
+        <th>Neliöt</th>
+        <th>Velaton hinta</th>
+        <th>Neliöhinta</th>
+        <th>Rakennusvuosi</th>
+        <th>Kerros</th>
+        <th>Hissi</th>
+        <th>Kunto</th>
+      </tr>
+    </table>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.1.2/nprogress.min.js"></script>
+    
+    <script type="text/javascript">
+    var get_results = function() {
+      NProgress.start();
+      setTimeout(function(){ NProgress.set(0.4); }, 1000);
+      setTimeout(function(){ NProgress.set(0.8); }, 2000);
+      jQuery.getJSON(
+        '/cgi-bin/scraper.py'
+      )
+      .done( function(data) {
+        jQuery.each(data, function(index, elem) {
+          jQuery('#container').append(
+            '<tr><td>' +elem.neighborhood+ '</td><td>' +elem.floor_plan+ '</td><td>' +elem.type+ '</td><td>' +elem.area+ '</td><td>' +elem.price+ ' €</td><td>' +Math.round(elem.price/elem.area, 2)+ ' €</td><td>' +elem.built+ '</td><td>' +elem.floor+ '</td><td>' +elem.has_elevator+ '</td><td>' +elem.condition+ '</td></tr>'
+          );
+        });
+        NProgress.done();
+      });
+    };
+
+    jQuery(document).ready(function() {
+      jQuery('#btn-results').click(function() {
+        get_results();
+      });
+    });
+    </script>
+  </body>
+</html>
