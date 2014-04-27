@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <title>Asuntojen.hintatiedot.fi Scraper</title>
-    <link href='style.css' rel='stylesheet' />
-    <link href='nprogress.css' rel='stylesheet' />
+    <link href='css/style.css' rel='stylesheet' />
+    <link href='css/nprogress.css' rel='stylesheet' />
   </head>
   <body>
     <h1>Asuntojen.hintatiedot.fi Scraper</h1>
@@ -32,8 +32,8 @@
     <script type="text/javascript">
     var get_results = function() {
       NProgress.start();
-      setTimeout(function(){ NProgress.set(0.4); }, 1000);
-      setTimeout(function(){ NProgress.set(0.8); }, 2000);
+      setTimeout(function(){ NProgress.set(0.4); }, 800);
+      setTimeout(function(){ NProgress.set(0.8); }, 2300);
       jQuery.getJSON(
         '/cgi-bin/scraper.py'
       )
