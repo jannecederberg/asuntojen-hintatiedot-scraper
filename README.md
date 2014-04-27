@@ -14,11 +14,11 @@ and run `python -m CGIHTTPServer`.
 Currently does not take any user input but only scrapes based on the
 parameters defined in `cgi-bin/scraper.py`. This is obviously not
 the way things would end up being in the long run but hey, this is
-just the first alpha-alpha version (more of a [PoC](http://en.wikipedia.org/wiki/Proof_of_concept).
+just the first alpha-alpha version (more of a [PoC](http://en.wikipedia.org/wiki/Proof_of_concept)
+than anything else really).
 
 ## Why is the scraper in cgi-bin?
 
-The reason for `scraper.py` being in <kbd>cgi-bin</kbd>     
-directory is since otherwise CGIHTTPServer will not execute
-the script. For production, there's no need for this limitation.
+The reason for `scraper.py` being in `cgi-bin` directory is since otherwise
+CGIHTTPServer will not execute the script. For production, there's no need for this limitation.
 I wanted a simple testing environment and hence the implementation
